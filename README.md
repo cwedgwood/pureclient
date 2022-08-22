@@ -2,10 +2,14 @@
 
 ## Installation
 Put the package under your project folder and add the following in import:
-```golang
-import "github.com/cwedgwood/pureclient/client"
+```go
+import pureclient "github.com/cwedgwood/pureclient/client"
 ```
 
 ## Documentation for API Endpoints
 
 [API Guide](/client/README.md)
+
+## Examples
+
+[List Volumes](/examples/listvol.go)
