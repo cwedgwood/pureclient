@@ -1,8 +1,8 @@
 
 # validation
 default:
-	go vet
-	go build
+	go vet ./client/
+	go build ./client/
 
 clean:
 	rm -f *~
