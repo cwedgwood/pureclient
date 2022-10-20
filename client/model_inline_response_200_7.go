@@ -9,5 +9,10 @@
 package pureclient
 
 type InlineResponse2007 struct {
-	Items []AdminApiToken `json:"items,omitempty"`
+	Items []AdminApiTokenWithName `json:"items,omitempty"`
+}
+
+type AdminApiTokenWithName struct {
+	Name     string        `json:"Name,omitempty"`
+	ApiToken AdminApiToken `json:"api_token,omitempty"`
 }
