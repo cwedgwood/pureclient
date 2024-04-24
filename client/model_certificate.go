@@ -25,6 +25,8 @@ type Certificate struct {
 	IssuedBy string `json:"issued_by,omitempty"`
 	// The party to whom the certificate is issued.
 	IssuedTo string `json:"issued_to,omitempty"`
+	// The text of private key.
+	Key string `json:"key,omitempty"`
 	// The size of the private key for the certificate in bits. Default is 2048 bits.
 	KeySize int32 `json:"key_size,omitempty"`
 	// The locality field listed in the certificate.

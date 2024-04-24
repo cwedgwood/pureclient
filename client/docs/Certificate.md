@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **IntermediateCertificate** | **string** | The text of the intermediate certificate chains. | [optional] [default to null]
 **IssuedBy** | **string** | The party that issued the certificate. | [optional] [default to null]
 **IssuedTo** | **string** | The party to whom the certificate is issued. | [optional] [default to null]
+**Key** | **string** | The text of private key. | [optional] [default to null]
 **KeySize** | **int32** | The size of the private key for the certificate in bits. Default is 2048 bits. | [optional] [default to null]
 **Locality** | **string** | The locality field listed in the certificate. | [optional] [default to null]
 **Organization** | **string** | The organization field listed in the certificate. | [optional] [default to null]
