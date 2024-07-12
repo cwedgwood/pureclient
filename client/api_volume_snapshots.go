@@ -300,7 +300,7 @@ type VolumeSnapshotsApiApi28VolumeSnapshotsPatchOpts struct {
     ReplicationSnapshot optional.Bool
 }
 
-func (a *VolumeSnapshotsApiService) Api28VolumeSnapshotsPatch(ctx context.Context, body FileSystem, localVarOptionals *VolumeSnapshotsApiApi28VolumeSnapshotsPatchOpts) (InlineResponse200166, *http.Response, error) {
+func (a *VolumeSnapshotsApiService) Api28VolumeSnapshotsPatch(ctx context.Context, body Model28VolumesnapshotPatchBody, localVarOptionals *VolumeSnapshotsApiApi28VolumeSnapshotsPatchOpts) (InlineResponse200166, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Patch")
 		localVarPostBody   interface{}
