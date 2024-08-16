@@ -22,5 +22,5 @@ type Admin struct {
 	Password string `json:"password,omitempty"`
 	// Public key for SSH access.
 	PublicKey string `json:"public_key,omitempty"`
-	Role string `json:"role,omitempty"`
+	Role AllOf28AdminsBodyRole `json:"role,omitempty"`
 }
