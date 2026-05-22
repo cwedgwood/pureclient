@@ -1,0 +1,11 @@
+# Built example binaries (from `go build ./examples/<name>`)
+/listvol
+/listvol-session
+/createvol
+
+# Local generator artefacts (from `generate.sh FA<version>`)
+/FA*.spec.yaml
+
+# Go test binaries and coverage output
+*.test
+*.out
