@@ -17,15 +17,15 @@ jobs:
     name: analyze
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
-      - name: Initialize CodeQL
-        uses: github/codeql-action/init@c3400c2f38909e0dcf3c3a41f2030a8217be5d3e # v3
-        with:
-          languages: go
-      - uses: actions/setup-go@40f1582b2485089dde7abd97c1529aa768e1baff # v5.6.0
+      - uses: actions/checkout@924ae3a1cded613372ab5595356fb5720e22ba16 # v5.0.0
+      - uses: actions/setup-go@24c7eb380a2dc368f2d129e4c65e51d172983a1e # v6.0.0
         with:
           go-version: stable
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v4
+        with:
+          languages: go
       - name: Build
         run: go build ./...
       - name: Analyze
-        uses: github/codeql-action/analyze@c3400c2f38909e0dcf3c3a41f2030a8217be5d3e # v3
+        uses: github/codeql-action/analyze@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v4
