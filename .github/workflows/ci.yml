@@ -90,6 +90,8 @@ jobs:
           go-version: "1.20"
       - name: build examples
         run: go build ./examples/...
+      - name: run documentation examples
+        run: go test -count=1 -run '^Example' ./auth
 
   generated:
     name: generated client is current
@@ -100,6 +102,10 @@ jobs:
         with:
           go-version: stable
           check-latest: true
+      - name: assert FA2.26 source
+        run: |
+          grep -Fq 'FA2.26.spec.yaml' client/api/openapi.yaml
+          grep -Fq 'Api226' client/client.gen.go
       - name: regenerate from committed spec
         run: make generate
       - name: reject generated or dependency drift
