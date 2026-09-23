@@ -13,7 +13,6 @@ package main
 
 import (
 	"context"
-	"crypto/tls"
 	"encoding/json"
 	"errors"
 	"fmt"
@@ -22,6 +21,7 @@ import (
 	"os"
 
 	pureclient "github.com/cwedgwood/pureclient/client"
+	"github.com/cwedgwood/pureclient/examples/internal/tlsconfig"
 )
 
 // login does a one-shot POST /api/2.26/login using the API token and
@@ -56,10 +56,12 @@ func main() {
 		log.Fatal("set PURE_ENDPOINT (e.g. https://array-vip) and PURE_API_TOKEN")
 	}
 
-	// Lab convenience: arrays present self-signed certs by default.
-	// For production use, point at a real CA bundle.
-	baseTransport := &http.Transport{
-		TLSClientConfig: &tls.Config{InsecureSkipVerify: true},
+	baseTransport, insecure, err := tlsconfig.NewTransport()
+	if err != nil {
+		log.Fatal(err)
+	}
+	if insecure {
+		log.Printf("WARNING: TLS certificate verification is disabled by %s=true", tlsconfig.InsecureSkipVerifyEnv)
 	}
 	baseHTTPClient := &http.Client{Transport: baseTransport}
 
