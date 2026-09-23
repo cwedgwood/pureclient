@@ -14,6 +14,7 @@ This document covers the breaking changes when migrating from the old
 - [Method Name Mapping](#method-name-mapping)
 - [Parameters](#parameters)
 - [Request Bodies](#request-bodies)
+- [Go Version](#go-version)
 - [Dependencies](#dependencies)
 - [Login Endpoint](#login-endpoint)
 - [Method Discovery](#method-discovery)
@@ -27,6 +28,13 @@ The client was regenerated using a different code generator
 ([oapi-codegen](https://github.com/oapi-codegen/oapi-codegen)) and a
 newer API version. Every consumer will need code changes - this is
 not a drop-in upgrade.
+
+## Go Version
+
+The minimum supported Go version is now **Go 1.26**. This is a
+breaking build-toolchain floor change from Go 1.20: update consumer
+build images, CI matrices, and the consumer module's own `go`
+directive as needed before upgrading.
 
 ## Client Construction
 
@@ -228,7 +236,7 @@ Body types are named `<Verb>Api226<Resource>JSONRequestBody`.
 | `github.com/antihax/optional` | required | removed |
 | `golang.org/x/oauth2` | required | removed |
 | `gopkg.in/yaml.v2` | required (example) | removed |
-| `github.com/oapi-codegen/runtime` | - | required |
+| `github.com/oapi-codegen/runtime` | - | required at v1.7.0 |
 
 ## Login Endpoint
 

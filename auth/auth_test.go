@@ -262,7 +262,7 @@ func TestTransport_ConcurrentRefreshSingleLogin(t *testing.T) {
 	ready.Add(N)
 	start.Add(1)
 
-	for i := 0; i < N; i++ {
+	for i := range N {
 		wg.Add(1)
 		go func(i int) {
 			defer wg.Done()
@@ -281,7 +281,7 @@ func TestTransport_ConcurrentRefreshSingleLogin(t *testing.T) {
 	start.Done()
 	wg.Wait()
 
-	for i := 0; i < N; i++ {
+	for i := range N {
 		if errs[i] != nil {
 			t.Errorf("g%d: %v", i, errs[i])
 			continue

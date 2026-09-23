@@ -19,9 +19,13 @@ export VOLUME_SIZE_GIB=1
 go run ./examples/createvol
 ```
 
-TLS verification is hardcoded off for lab convenience (same as the
-other examples). Production users should remove
-`InsecureSkipVerify` and point at a real CA bundle.
+TLS certificates are verified using the system trust roots by default.
+For an array using a private CA, set `PURE_CA_FILE` to a PEM certificate
+bundle; its certificates are added to, rather than replacing, the system
+roots. As a last resort for a lab, set
+`PURE_INSECURE_SKIP_VERIFY=true`; the command prints a warning when
+verification is disabled. Only the exact values `true` and `false` are
+accepted.
 
 ## What it shows
 
