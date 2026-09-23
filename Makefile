@@ -5,12 +5,15 @@ VERSION ?=
 # fallback; if you change one, change both.
 OAPI_CODEGEN_VERSION ?= v2.7.0
 
-.PHONY: default generate install-tools clean
+.PHONY: default check-api-spec generate install-tools clean
 
 default:
 	go vet ./...
 	go build ./...
 	go test ./...
+
+check-api-spec:
+	go test -count=1 -run '^TestCommittedSpecTargetsFlashArray226$$' .
 
 generate: install-tools
 	./generate.sh $(VERSION)

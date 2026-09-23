@@ -12,17 +12,18 @@ set -euo pipefail
 #   - oapi-codegen v2.7.0 (run `make install-tools`, or
 #     `go install github.com/oapi-codegen/oapi-codegen/v2/cmd/oapi-codegen@v2.7.0`)
 #   - Docker (only needed when extracting a spec by version)
-#   - Go toolchain
+#   - Go 1.26 or newer
 #
 # Usage:
 #   ./generate.sh                  # use existing spec in client/api/openapi.yaml
 #   ./generate.sh /path/to.yaml    # use a local spec file (does NOT update openapi.yaml)
-#   ./generate.sh FA2.42           # extract from quay.io/purestorage/swagger image (OAS3 only)
+#   ./generate.sh FA2.NN           # maintenance-only extraction of an OAS3 image spec
 #                                  # AND replace client/api/openapi.yaml with the extracted spec
 #                                  # so the committed spec matches the committed client.
 #
 # Note: the version-extraction form (./generate.sh FA2.NN) only works for
-# OAS3 versions (FA2.42 and later). Earlier versions including the
+# native OAS3 versions. It is not a supported API upgrade path. Earlier
+# versions including the
 # currently-committed FA2.26 are Swagger 2.0 and require a one-shot
 # Swagger 2.0 -> OpenAPI 3.0.1 conversion that this script does not
 # automate. To regenerate against FA2.26 specifically, re-use the
@@ -87,9 +88,8 @@ else
     fi
     if head -1 "${spec_file}" | grep -q '^swagger:'; then
         echo "Error: ${SPEC_ARG}.spec.yaml is Swagger 2.0; oapi-codegen requires OpenAPI 3." >&2
-        echo "Older versions (FA2.41 and earlier) are Swagger 2.0 and must be converted first," >&2
-        echo "e.g. with 'openapi-generator generate -i <spec> -g openapi-yaml'. Try a newer version" >&2
-        echo "(FA2.42+) for native OAS3, or use the committed client/api/openapi.yaml." >&2
+        echo "Swagger 2.0 specs must be converted before use with oapi-codegen." >&2
+        echo "For the supported FA2.26 client, use the committed client/api/openapi.yaml." >&2
         exit 1
     fi
     echo "Extracted: ${spec_file}"

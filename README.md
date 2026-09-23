@@ -25,7 +25,9 @@ go get github.com/cwedgwood/pureclient/client
 import pureclient "github.com/cwedgwood/pureclient/client"
 ```
 
-Requires Go 1.20 or newer.
+Requires Go 1.26 or newer. Raising the Go version from 1.20 is a
+breaking compatibility change for consumers that build with an older
+toolchain.
 
 ## License
 
@@ -86,15 +88,15 @@ detail.
 
 ```sh
 make generate                  # use existing client/api/openapi.yaml
-make generate VERSION=FA2.42   # extract a Swagger image spec (OAS3 only)
 ```
 
 The `VERSION=FA2.NN` form only works for OAS3 specs (FA2.42 and
-later). Earlier versions, including the currently-committed FA2.26,
-are Swagger 2.0 and require a one-shot Swagger 2.0 -> OpenAPI 3.0.1
-conversion that `generate.sh` does not automate. To regenerate
-against FA2.26 specifically, re-use the already-converted
-`client/api/openapi.yaml` (the default no-arg form).
+later), and is a maintainer facility rather than a supported API
+upgrade recommendation. Earlier versions, including the supported
+FA2.26 target, are Swagger 2.0 and require a one-shot Swagger 2.0 ->
+OpenAPI 3.0.1 conversion that `generate.sh` does not automate. To
+regenerate this client, re-use the already-converted
+`client/api/openapi.yaml` with the default no-argument form.
 
 The extraction form rewrites `client/api/openapi.yaml` with the
 freshly-extracted spec (plus a regenerated provenance header) so
@@ -104,8 +106,10 @@ client but does **not** touch `openapi.yaml` - use it for local
 experiments only.
 
 See `generate.sh` for details. Requires `oapi-codegen` v2.7.0 (the
-version used for the committed output); Docker is only needed when
-extracting a spec by version.
+version used for the committed output) and Go 1.26 or newer. Older
+regeneration documentation that names an earlier Go toolchain is no
+longer sufficient. Docker is only needed when extracting a spec by
+version.
 
 ## Caveats
 
