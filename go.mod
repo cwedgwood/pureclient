@@ -1,9 +1,9 @@
 module github.com/cwedgwood/pureclient
 
-go 1.26
+go 1.26.0
 
 require (
-	github.com/oapi-codegen/runtime v1.7.0
+	github.com/oapi-codegen/runtime v1.9.0
 	gopkg.in/yaml.v3 v3.0.1
 )
 
